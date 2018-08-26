@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CFLAGS	Makefile	/^CFLAGS = -Wall -W -g$/;"	m
+LEAF	b+tree.h	/^enum n_type { NON_LEAF = 0, LEAF = 1 };$/;"	e	enum:n_type
+MAX_KEY	b+tree.h	9;"	d
+NON_LEAF	b+tree.h	/^enum n_type { NON_LEAF = 0, LEAF = 1 };$/;"	e	enum:n_type
+Node	b+tree.h	/^typedef struct b_plus_tree_node Node;$/;"	t	typeref:struct:b_plus_tree_node
+OBJS	Makefile	/^OBJS = b+tree.o main.o$/;"	m
+Root	b+tree.h	/^typedef Node Root;$/;"	t
+TARGET	Makefile	/^TARGET = b+tree$/;"	m
+__b_plus_tree__	b+tree.h	2;"	d
+b_plus_tree_node	b+tree.h	/^struct b_plus_tree_node {$/;"	s
+clean_node	b+tree.c	/^void clean_node(Node *node, int num_of_key)$/;"	f
+create_node	b+tree.c	/^Node * create_node(int *key, int num_of_key, enum n_type node_type)$/;"	f
+do_sort_in_index	b+tree.c	/^void do_sort_in_index(Node *node, int index, int key, Node *new_node)$/;"	f
+find_first_leaf	b+tree.c	/^Node *find_first_leaf(Root *root)$/;"	f
+find_proper_leaf	b+tree.c	/^Node * find_proper_leaf(Root *root, int key, Node **parent_of_leaf)$/;"	f
+get_leaf_ptr_index	b+tree.c	/^int get_leaf_ptr_index(Node *parent, Node *leaf)$/;"	f
+get_proper_index	b+tree.c	/^int get_proper_index(Node *node, int key)$/;"	f
+init_root	b+tree.c	/^Root *init_root(int key)$/;"	f
+insert	b+tree.c	/^Root *insert(Root *root, int key)$/;"	f
+is_leaf	b+tree.h	/^	bool is_leaf;$/;"	m	struct:b_plus_tree_node
+key	b+tree.h	/^	int key[MAX_KEY + 1];$/;"	m	struct:b_plus_tree_node
+main	main.c	/^int main(void)$/;"	f
+n_type	b+tree.h	/^enum n_type { NON_LEAF = 0, LEAF = 1 };$/;"	g
+node_ptr	b+tree.h	/^	struct b_plus_tree_node *node_ptr[MAX_KEY + 1 + 1];$/;"	m	struct:b_plus_tree_node	typeref:struct:b_plus_tree_node::b_plus_tree_node
+node_type	b+tree.h	/^enum n_type node_type;$/;"	v	typeref:enum:n_type
+num_of_key	b+tree.h	/^	int num_of_key;$/;"	m	struct:b_plus_tree_node
+page	b+tree.h	/^	void *page[MAX_KEY + 1 + 1];$/;"	m	struct:b_plus_tree_node
+print	b+tree.c	/^void print(Root *root)$/;"	f
+promote	b+tree.c	/^Node * promote(Node *parent, Node *leaf, Node *new_leaf)$/;"	f
+simple_insert	b+tree.c	/^void simple_insert(Node *leaf, int key)$/;"	f
+splite	b+tree.c	/^Node * splite(Node *leaf)$/;"	f
