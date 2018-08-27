@@ -1,5 +1,6 @@
 #include "b+tree.h"
 
+//insert
 Root *insert(Root *root, int key)
 {
 	if(root == NULL) 
