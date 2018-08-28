@@ -3,8 +3,22 @@
 
 int main(void)
 {
+	int num = 1;
 	Root *root = NULL;
 
+	while(true) {
+		printf("insert : ");
+		scanf("%d", &num);
+		if(num < 0)
+			break;
+
+		root = insert(root, num);
+		create_dot_file(root);
+		system("dot -Tpng b_plus_tree.dot -o 2.png");
+	}
+
+
+/*
 	root = insert(root, 10);
 	root = insert(root, 20);
 	root = insert(root, 30);
@@ -20,7 +34,6 @@ int main(void)
 	root = insert(root, 42);
 	root = insert(root, 43);
 	root = insert(root, 44);
-
 	root = insert(root, 21);
 	root = insert(root, 22);
 	root = insert(root, 23);
@@ -29,8 +42,20 @@ int main(void)
 	root = insert(root, 26);
 	root = insert(root, 27);
 	root = insert(root, 28);
+*/
+	/*
+	for(int i = 0; i < 40; i++) 
+		root = insert(root, i);
+	*/
 
+	/*
 	print_leaf(root);
 	print(root);
+	*/
+/*
+	create_dot_file(root);
+	system("dot -Tpng b_plus_tree.dot -o 2.png");
+*/
+
 	return 0;
 }

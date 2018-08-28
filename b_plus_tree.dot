@@ -1,0 +1,18 @@
+digraph G {
+	graph [dpi = 300];
+	node    [style =     filled];
+	edge   [color = red];
+	color = red;
+
+	node00a [label = "3, 100, 300"];
+
+	node01a [label = "1, 2"];
+	node01b [label = "3, 4, 4"];
+	node01c [label = "100, 200"];
+	node01d [label = "300, 400"];
+
+	"node00a" -> "node01a"
+	"node00a" -> "node01b"
+	"node00a" -> "node01c"
+	"node00a" -> "node01d"
+}
