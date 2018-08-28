@@ -226,7 +226,6 @@ Node * promote(Node *parent, Node *leaf, Node *new_leaf)
 	return tmp;
 }
 
-
 Node * find_parent(Root *root, Node *node) 
 {
  	Node *parent = NULL;
