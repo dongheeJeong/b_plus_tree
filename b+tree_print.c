@@ -106,7 +106,7 @@ void create_dot_file(Root *root)
 	char ind[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k',	\
 					 'l', 'm', 'n', 'o', 'p', 'q', 'r', 'x', 'y', 'z' };
 	const char *node_str = "\tnode", *label_str = " [label = ";
-	char str[256], ind_str[3];
+	char str[256], ind_str[10];
 
 
 
