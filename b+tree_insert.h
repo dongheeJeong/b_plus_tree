@@ -1,5 +1,5 @@
-#ifndef __b_plus_tree__
-#define __b_plus_tree__
+#ifndef __b_plus_tree_insert__
+#define __b_plus_tree_insert__
 
 #include <stdio.h>
 #include <stdlib.h>
