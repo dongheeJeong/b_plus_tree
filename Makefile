@@ -1,15 +1,18 @@
 CFLAGS = -Wall -W -g
-OBJS = b+tree_print.o b+tree.o main.o
+OBJS = b+tree_insert.o b+tree_delete.o b+tree_print.o main.o
 TARGET = b+tree
 
-b_plus_tree : b_plus_tree_print.o b_plus_tree.o main.o
-	gcc b+tree_print.o b+tree.o main.o -o b+tree $(CFLAGS)
+b_plus_tree : insert.o delete.o print.o main.o
+	gcc $(OBJS) -o b+tree $(CFLAGS)
 
-b_plus_tree_print.o : b+tree_print.c
+insert.o : b+tree_insert.c
+	gcc -c b+tree_insert.c $(CFLAGS)
+
+delete.o : b+tree_delete.c
+	gcc -c b+tree_delete.c $(CFLAGS)
+
+print.o : b+tree_print.c
 	gcc -c b+tree_print.c $(CFLAGS)
-
-b_plus_tree.o : b+tree.c
-	gcc -c b+tree.c $(CFLAGS)
 
 main.o : main.c
 	gcc -c main.c $(CFLAGS)
