@@ -211,6 +211,7 @@ Node * promote(Node *parent, Node *leaf, Node *new_leaf)
 	if(new_leaf->is_leaf == true)
 		promote_val  = new_leaf->key[0];
 	else
+		/* what is this?  */
 		promote_val = find_first_leaf(new_leaf)->key[0];
 
 	tmp = parent;

@@ -2,13 +2,17 @@
 #include "b+tree_delete.h"
 #include "b+tree_print.h"
 
+void print_usage(void);
+
 int main(void)
 {
 	int num = 1;
 	Root *root = NULL;
 
+	print_usage();
+
 	while(true) {
-		printf("insert : ");
+		printf("input : ");
 		scanf("%d", &num);
 		if(num < 0)
 			break;
@@ -27,8 +31,6 @@ int main(void)
 	root = insert(root, 50);
 	root = insert(root, 45);
 	root = insert(root, 60);
-	root = insert(root, 70);
-	root = insert(root, 75);
 	root = insert(root, 55);
 	root = insert(root, 100);
 	root = insert(root, 41);
@@ -60,3 +62,20 @@ int main(void)
 
 	return 0;
 }
+
+void print_usage(void)
+{
+	const char *line20 = "====================";
+
+	printf("%s%s%s%s\n", line20, line20, line20, line20);
+	printf("for inserting a key, input positive key.\n");
+	printf("for  deleting a key, input negative value of key.\n");
+	printf("%s%s%s%s\n", line20, line20, line20, line20);
+}
+
+
+
+
+
+
+
