@@ -50,6 +50,28 @@ Node * dequeue(void)
 	return ret;
 }
 
+void print_usage(Root *root, int *num)
+{
+	extern char fname[BUFSIZ];
+    const char *line20 = "====================";
+
+    printf("%s%s%s%s\n", line20, line20, line20, line20);
+    printf("for inserting a key, input positive key.\n");
+    printf("for  deleting a key, input negative value of key.\n");
+
+    printf("curent elements: [");
+    print_leaf(root);
+    printf("]\n");
+
+    if(fname[0] != '\0')
+        printf("%s generated.\n", fname);
+
+    printf("%s%s%s%s\n", line20, line20, line20, line20);
+
+    printf("input: ");
+    scanf("%d", num);
+}
+
 void print(Root *root) 
 {
 	int i;
@@ -63,25 +85,28 @@ void print(Root *root)
 		for(i = 0; i < node->num_of_key+1; i++) 
 			enqueue(node->node_ptr[i]);
 
-		for(i = 0; i < node->num_of_key; i++)
+		for(i = 0; i < node->num_of_key; i++) {
 			printf("%d, ", node->key[i]);
-		printf("\n");
+		}
 	}
 }
 
 void print_leaf(Root *root)
 {
 	int i;
-	Node *leaf = find_first_leaf(root);
+	Node *leaf;
 
+	if(root == NULL)
+		return;
+
+	leaf = find_first_leaf(root);
 	while(leaf != NULL) {
 		for(i = 0; i < leaf->num_of_key; i++)
 			printf("%d ", leaf->key[i]);
 
 		printf("--> ");
-		leaf = leaf->node_ptr[MAX_KEY + 1];
+		leaf = leaf->node_ptr[MAX_KEY + 2];
 	}
-	printf("\n");
 }
 
 void create_dot_file(Root *root)

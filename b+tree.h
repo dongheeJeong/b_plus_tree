@@ -22,7 +22,7 @@ struct b_plus_tree_node {
 	bool is_leaf;
 	int num_of_key;
 	int key[MAX_KEY + 1];
-	struct b_plus_tree_node *node_ptr[MAX_KEY + 1 + 1];
+	struct b_plus_tree_node *node_ptr[MAX_KEY + 1 + 1 + 1]; // key + 1 for non-leaf, +1 for 
 	void *page[MAX_KEY + 1 + 1];
 };
 typedef struct b_plus_tree_node Node;
@@ -38,7 +38,6 @@ Q *in, *out;
 //
 // main
 //
-void print_usage(void);
 void getcmd(char *timebuf);
 
 //
@@ -69,6 +68,7 @@ Node * find_first_leaf(Root *root);
 //
 void enqueue(Node *);
 Node * dequeue(void);
+void print_usage(Root *, int *);
 void print(Root *);
 void print_leaf(Root *);
 

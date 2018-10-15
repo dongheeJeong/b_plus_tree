@@ -109,12 +109,12 @@ Node * create_node(int *key, int num_of_key, enum n_type node_type)
 		node->is_leaf = false;
 
 	node->num_of_key = num_of_key;
-	for(i = 0; i < MAX_KEY; i++) {
+	for(i = 0; i < MAX_KEY + 1; i++) {
 		node->key[i] = 0;
 		node->page[i] = NULL;
 	}
 
-	for(i = 0; i < MAX_KEY + 1; i++) 
+	for(i = 0; i < MAX_KEY + 3; i++) 
 		node->node_ptr[i] = NULL;
 
 	for(i = 0; i < num_of_key; i++)
@@ -123,7 +123,7 @@ Node * create_node(int *key, int num_of_key, enum n_type node_type)
 	return node;
 }
 
-/* new_leaf is made right side of leaf, which means having bigger elements */
+/* new_leaf is made right side of leaf, which has bigger elements */
 Node * splite(Node *node, enum n_type node_type)
 {
 	Node *new_node = NULL;
@@ -138,8 +138,8 @@ Node * splite(Node *node, enum n_type node_type)
 		new_node = create_node(&node->key[node_key], new_node_key, node_type);
 
 		/* maintain the conections between leafs */
-		new_node->node_ptr[MAX_KEY + 1] = node->node_ptr[MAX_KEY + 1];
-		node->node_ptr[MAX_KEY + 1] = new_node;
+		new_node->node_ptr[MAX_KEY + 2] = node->node_ptr[MAX_KEY + 2];
+		node->node_ptr[MAX_KEY + 2] = new_node;
 	}
 	else if(node_type == NON_LEAF) {
 		new_node_key = MAX_KEY - node_key;
@@ -177,10 +177,10 @@ void simple_insert(Node *leaf, int key)
 void clean_node(Node *node, int num_of_key)
 {
 	int i;
-	for(i = num_of_key; i < MAX_KEY+1; i++)
+	for(i = num_of_key; i < MAX_KEY + 1; i++)
 		node->key[i] = 0;
 
-	for(i = num_of_key + 1; i < MAX_KEY + 1; i++) {
+	for(i = num_of_key + 1; i < MAX_KEY + 2; i++) {
 		node->node_ptr[i] = NULL;
 		node->page[i] = NULL;
 	}

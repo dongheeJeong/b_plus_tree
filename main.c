@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include "b+tree.h"
 
+char fname[BUFSIZ];
+
 int main(void)
 {
 	int num = 1;
 	Root *root = NULL;
 	char command[BUFSIZ];
 
-	print_usage();
-
 	while(true) {
-		printf("input : ");
-		scanf("%d", &num);
+		write(1,"\E[H\E[2J",7);
+		print_usage(root, &num);
 		if(num < 0)
 			break;
 
@@ -25,16 +25,6 @@ int main(void)
 	print(root);
 
 	exit(0);
-}
-
-void print_usage(void)
-{
-	const char *line20 = "====================";
-
-	printf("%s%s%s%s\n", line20, line20, line20, line20);
-	printf("for inserting a key, input positive key.\n");
-	printf("for  deleting a key, input negative value of key.\n");
-	printf("%s%s%s%s\n", line20, line20, line20, line20);
 }
 
 void getcmd(char *cmdbuf)
@@ -57,8 +47,10 @@ void getcmd(char *cmdbuf)
 	gettimeofday(&usec_info, NULL);
 	int usec	= usec_info.tv_usec;
 
-    snprintf(cmdbuf, BUFSIZ, "%s %d-%d-%d-%02d%02d%02d%3d.png", cmd, year, month, day, hour, min, sec, usec);
-	printf("%s\n", cmdbuf);
+    snprintf(fname, BUFSIZ, "%d-%d-%d-%02d%02d%02d%3d.png", year, month, day, hour, min, sec, usec);
+    snprintf(cmdbuf, BUFSIZ, "%s %s", cmd, fname);
+
+	printf("%s generated.\n", fname);
 }
 
 
