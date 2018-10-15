@@ -12,7 +12,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#define MAX_KEY 3
+#define MAX_KEY 4
 #define SPLITE(MAX) ((MAX / 2) + (MAX % 2))
 
 enum n_type { NON_LEAF = 0, LEAF = 1 };
@@ -27,6 +27,7 @@ struct b_plus_tree_node {
 };
 typedef struct b_plus_tree_node Node;
 typedef Node Root;
+Node *target_node;
 
 struct Queue {
 	Node *element;

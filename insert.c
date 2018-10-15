@@ -14,6 +14,7 @@ Root *insert(Root *root, int key)
 	/* simple case, enough space for inserting a new key in leaf node  */
 	if(leaf->num_of_key < MAX_KEY) {
 		simple_insert(leaf, key);
+		target_node = leaf;
 	}
 	else if(leaf->num_of_key == MAX_KEY
 			&& parent == NULL) {
@@ -21,6 +22,7 @@ Root *insert(Root *root, int key)
 		simple_insert(leaf, key);
 		new_leaf = splite(leaf, leaf_t);
 		new_root = promote(parent, leaf, new_leaf);
+		target_node = new_leaf;
 	}
 	/* leaf-overflow only case  */
 	else if(leaf->num_of_key == MAX_KEY 
@@ -29,6 +31,7 @@ Root *insert(Root *root, int key)
 		simple_insert(leaf, key);
 		new_leaf = splite(leaf, leaf_t);
 		promote(parent, leaf, new_leaf);
+		target_node = new_leaf;
 	}
 	/* non-leaf-overflow  */
 	else if(leaf->num_of_key == MAX_KEY
@@ -38,6 +41,7 @@ Root *insert(Root *root, int key)
 		simple_insert(leaf, key);
 		new_leaf = splite(leaf, leaf_t);
 		promote(parent, leaf, new_leaf);
+		target_node = new_leaf;
 
 		/* recursively check if parent is full because of promotion */
 		new_root = parent;
@@ -56,7 +60,8 @@ Root *insert(Root *root, int key)
 Root *init_root(int key)
 {
 	node_type = LEAF;
-	return create_node(&key, 1, node_type);	
+	target_node = create_node(&key, 1, node_type); // init node(root) == target_node at first
+	return target_node;
 }
 
 Node *find_first_leaf(Root *root)

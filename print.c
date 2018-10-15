@@ -114,7 +114,7 @@ void create_dot_file(Root *root)
 	int fd, i;
 	Node *node;
 	const char *fname = "b_plus_tree.dot";
-	const char *dot_file_prefix = "digraph G {\n\tgraph [dpi = 300];\n\tnode    [style =     filled];\n\tedge   [color = red];\n\tcolor = red;\n\n";
+	const char *dot_file_prefix = "digraph G {\n\tgraph [dpi   = 300];\n\tnode  [style = filled];\n\n";
 
 	if((fd = open(fname, O_CREAT|O_RDWR|O_TRUNC, 0644)) < 0) {
 		fprintf(stderr, "open %s error\n", fname);
@@ -129,7 +129,7 @@ void create_dot_file(Root *root)
 	int level = 0, level_node = 1, next_level_node = 0, index = 0;
 	char ind[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k',	\
 					 'l', 'm', 'n', 'o', 'p', 'q', 'r', 'x', 'y', 'z' };
-	const char *node_str = "\tnode", *label_str = " [label = ";
+	const char *node_str = "\tnode", *label_str = " [color = green; label = ", *label2_str = " [label = ";
 	char str[256], ind_str[10];
 
 
@@ -145,7 +145,10 @@ void create_dot_file(Root *root)
 		strncat(str, ind_str, strlen(ind_str));
 
 		strncat(str, &ind[index], 1);
-		strncat(str, label_str, strlen(label_str));
+		if(node == target_node)
+			strncat(str, label_str, strlen(label_str));
+		else 
+			strncat(str, label2_str, strlen(label2_str));
 
 		for(i = 0; i < node->num_of_key; i++) {
 			if(i == 0 && node->num_of_key == 1)

@@ -57,7 +57,7 @@ void getcmd(char *cmdbuf)
 	gettimeofday(&usec_info, NULL);
 	int usec	= usec_info.tv_usec;
 
-    snprintf(fname, BUFSIZ, "%d-%d-%d-%02d%02d%02d%d.png", year, month, day, hour, min, sec, usec);
+    snprintf(fname, BUFSIZ, "%d-%d-%d-%02d%02d%02d%06d.png", year, month, day, hour, min, sec, usec);
     snprintf(cmdbuf, BUFSIZ, "%s %s%s", cmd, fname_prefix, fname);
 
 	printf("%s generated.\n", fname);
