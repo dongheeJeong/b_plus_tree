@@ -1,13 +1,20 @@
+#include <string.h>
+#include <time.h>
+#include <sys/time.h>
 #include "b+tree_insert.h"
 #include "b+tree_delete.h"
 #include "b+tree_print.h"
 
+const char *cmd = "dot -Tpng b_plus_tree.dot -o";
+
 void print_usage(void);
+void getcmd(char *timebuf);
 
 int main(void)
 {
 	int num = 1;
 	Root *root = NULL;
+	char command[BUFSIZ];
 
 	print_usage();
 
@@ -19,48 +26,14 @@ int main(void)
 
 		root = insert(root, num);
 		create_dot_file(root);
-		system("dot -Tpng b_plus_tree.dot -o 2.png");
+		getcmd(command);
+		system(command);
 	}
 
-
-/*
-	root = insert(root, 10);
-	root = insert(root, 20);
-	root = insert(root, 30);
-	root = insert(root, 40);
-	root = insert(root, 50);
-	root = insert(root, 45);
-	root = insert(root, 60);
-	root = insert(root, 55);
-	root = insert(root, 100);
-	root = insert(root, 41);
-	root = insert(root, 42);
-	root = insert(root, 43);
-	root = insert(root, 44);
-	root = insert(root, 21);
-	root = insert(root, 22);
-	root = insert(root, 23);
-	root = insert(root, 24);
-	root = insert(root, 25);
-	root = insert(root, 26);
-	root = insert(root, 27);
-	root = insert(root, 28);
-*/
-	/*
-	for(int i = 0; i < 40; i++) 
-		root = insert(root, i);
-	*/
-
-	/*
 	print_leaf(root);
 	print(root);
-	*/
-/*
-	create_dot_file(root);
-	system("dot -Tpng b_plus_tree.dot -o 2.png");
-*/
 
-	return 0;
+	exit(0);
 }
 
 void print_usage(void)
@@ -72,6 +45,30 @@ void print_usage(void)
 	printf("for  deleting a key, input negative value of key.\n");
 	printf("%s%s%s%s\n", line20, line20, line20, line20);
 }
+
+void getcmd(char *cmdbuf)
+{
+	time_t cur_time;
+    struct tm *time_info;
+	struct timeval usec_info;
+
+    time(&cur_time);
+    time_info = localtime(&cur_time);
+
+    int year    = time_info->tm_year + 1900;
+    int month   = time_info->tm_mon + 1;
+    int day     = time_info->tm_mday;
+    int hour    = time_info->tm_hour;
+    int min     = time_info->tm_min;
+    int sec     = time_info->tm_sec;
+
+	gettimeofday(&usec_info, NULL);
+	int usec	= usec_info.tv_usec;
+
+    snprintf(cmdbuf, BUFSIZ, "%s %d-%d-%d-%02d%02d%02d%3d.png", cmd, year, month, day, hour, min, sec, usec);
+	printf("%s\n", cmdbuf);
+}
+
 
 
 
