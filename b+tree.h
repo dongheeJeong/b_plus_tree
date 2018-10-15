@@ -38,6 +38,7 @@ Q *in, *out;
 //
 // main
 //
+void init(void);
 void getcmd(char *timebuf);
 
 //

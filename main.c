@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <dirent.h>
 #include "b+tree.h"
 
 char fname[BUFSIZ];
@@ -8,6 +9,8 @@ int main(void)
 	int num = 1;
 	Root *root = NULL;
 	char command[BUFSIZ];
+
+	init();
 
 	while(true) {
 		write(1,"\E[H\E[2J",7);
@@ -27,11 +30,18 @@ int main(void)
 	exit(0);
 }
 
+void init(void)
+{
+	DIR* dir = NULL;
+	(dir = opendir("image"))? closedir(dir) : mkdir("image", 0755);
+}
+
 void getcmd(char *cmdbuf)
 {
 	time_t cur_time;
     struct tm *time_info;
 	struct timeval usec_info;
+	const char *fname_prefix = "./image/";
 	const char *cmd = "dot -Tpng b_plus_tree.dot -o";
 
     time(&cur_time);
@@ -47,8 +57,8 @@ void getcmd(char *cmdbuf)
 	gettimeofday(&usec_info, NULL);
 	int usec	= usec_info.tv_usec;
 
-    snprintf(fname, BUFSIZ, "%d-%d-%d-%02d%02d%02d%3d.png", year, month, day, hour, min, sec, usec);
-    snprintf(cmdbuf, BUFSIZ, "%s %s", cmd, fname);
+    snprintf(fname, BUFSIZ, "%d-%d-%d-%02d%02d%02d%d.png", year, month, day, hour, min, sec, usec);
+    snprintf(cmdbuf, BUFSIZ, "%s %s%s", cmd, fname_prefix, fname);
 
 	printf("%s generated.\n", fname);
 }
