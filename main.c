@@ -1,14 +1,5 @@
-#include <string.h>
-#include <time.h>
-#include <sys/time.h>
-#include "b+tree_insert.h"
-#include "b+tree_delete.h"
-#include "b+tree_print.h"
-
-const char *cmd = "dot -Tpng b_plus_tree.dot -o";
-
-void print_usage(void);
-void getcmd(char *timebuf);
+#include <stdio.h>
+#include "b+tree.h"
 
 int main(void)
 {
@@ -51,6 +42,7 @@ void getcmd(char *cmdbuf)
 	time_t cur_time;
     struct tm *time_info;
 	struct timeval usec_info;
+	const char *cmd = "dot -Tpng b_plus_tree.dot -o";
 
     time(&cur_time);
     time_info = localtime(&cur_time);
